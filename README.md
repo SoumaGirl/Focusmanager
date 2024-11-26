@@ -37,6 +37,8 @@ FocusManager is a desktop application designed to boost productivity by helping 
     Java Development Kit (JDK): Version 17 or higher.
     JavaFX SDK: Ensure JavaFX is configured in your environment.
     Docker: For MySQL database setup (optional).
-<img src="T1.png" alt="First Screen" width="500"/><img src="T2.png" alt="First Screen" width="500"/><img src="T3.png" alt="First Screen" width="500"/>
-<img src="T4.png" alt="First Screen" width="500"/><img src="T5.png" alt="First Screen" width="500"/><img src="T6.png" alt="First Screen" width="500"/>
-<img src="T7.png" alt="First Screen" width="500"/><img src="T8.png" alt="First Screen" width="500"/>
+<br>
+<img src="T1.png" alt="1" width="500"/> <img src="T2.png" alt="2" width="500"/>
+<img src="T3.png" alt="3" width="500"/> <img src="T4.png" alt="4" width="500"/>
+<img src="T5.png" alt="5" width="500"/> <img src="T6.png" alt="6" width="500"/>
+<img src="T7.png" alt="7" width="500"/> <img src="T8.png" alt="8" width="500"/>
