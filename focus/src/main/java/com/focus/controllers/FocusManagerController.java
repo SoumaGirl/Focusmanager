@@ -8,8 +8,6 @@ public class FocusManagerController {
 
     @FXML
     private ImageView logoImageView;
-
-
     public void initialize() {
         try {
             // Charger l'image depuis les ressources
