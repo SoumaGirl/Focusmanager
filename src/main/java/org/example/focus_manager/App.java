@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
+        Focus_Manageruid ui = new Focus_Manageruid();
+        Scene scene = new Scene(ui.getLayout(), 800, 600);
+        primaryStage.setScene(scene);
         primaryStage.setTitle("FocusManager");
         primaryStage.show();
     }

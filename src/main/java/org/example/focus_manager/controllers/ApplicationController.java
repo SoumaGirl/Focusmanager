@@ -2,7 +2,7 @@ package org.example.focus_manager.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import org.example.focus_manager.Model.Application;
-import org.example.focus_manager.database.BDMYSQL ;
+import org.example.focus_manager.Model.Database ;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

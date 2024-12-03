@@ -2,49 +2,40 @@ package org.example.focus_manager.Model;
 
 import java.time.LocalDateTime;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class UsageTracking {
     private int id;
-    private String applicationName;
-    private int usageTime;
-    private LocalDateTime timestamp;
+    private String fonctionnalite;
+    private int utilisateurId;
+    private String dateUtilisation;
 
-    public UsageTracking(int id, String applicationName, int usageTime, LocalDateTime timestamp) {
+    // Constructeurs, getters et setters
+    public UsageTracking() {}
+
+    public UsageTracking(int id, String fonctionnalite, int utilisateurId, String dateUtilisation) {
         this.id = id;
-        this.applicationName = applicationName;
-        this.usageTime = usageTime;
-        this.timestamp = timestamp;
+        this.fonctionnalite = fonctionnalite;
+        this.utilisateurId = utilisateurId;
+        this.dateUtilisation = dateUtilisation;
     }
 
-    // Getters et setters
-    public int getId() {
-        return id;
-    }
+    // Méthode pour enregistrer une utilisation dans la base de données
+    public void enregistrerUsage() {
+        String query = "INSERT INTO usage_tracking (fonctionnalite, utilisateur_id, date_utilisation) VALUES (?, ?, ?)";
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, fonctionnalite);
+            statement.setInt(2, utilisateurId);
+            statement.setString(3, dateUtilisation);
 
-    public String getApplicationName() {
-        return applicationName;
-    }
-
-    public void setApplicationName(String applicationName) {
-        this.applicationName = applicationName;
-    }
-
-    public int getUsageTime() {
-        return usageTime;
-    }
-
-    public void setUsageTime(int usageTime) {
-        this.usageTime = usageTime;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
