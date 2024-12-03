@@ -42,7 +42,7 @@ FocusManager is a desktop application designed to boost productivity by helping 
 <br>
 <img src="T2.png" alt="2" width="900"/>
 <br>
-<img src="T3.jpg" alt="3" width="900"/> 
+<img src="T3.png" alt="3" width="900"/> 
 <br>
 <img src="T4.png" alt="4" width="900"/>
 <br>
