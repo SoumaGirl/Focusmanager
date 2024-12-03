@@ -1,4 +1,4 @@
-package org.example.focus_manager.Model;
+package com.focus.Model;
 
 public class Task {
     private String description;

@@ -1,17 +1,15 @@
-module org.example.focus_manager {
+module com {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+    requires transitive javafx.graphics;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
-    requires com.almasb.fxgl.all;
+    exports com.focus.view;
+    exports com.focus.controllers;
 
-    opens org.example.focus_manager to javafx.fxml;
-    opens org.example.focus_manager.controllers to javafx.fxml;
-    exports org.example.focus_manager;
+
+    opens com.focus.view to javafx.fxml;
+    opens com.focus.controllers to javafx.fxml;
+
+
+
 }

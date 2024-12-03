@@ -1,6 +1,4 @@
-package org.example.focus_manager.Model;
-
-import java.time.LocalDateTime;
+package com.focus.Model;
 
 
 import java.sql.Connection;

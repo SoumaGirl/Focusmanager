@@ -1,7 +1,6 @@
-package org.example.focus_manager;
+package com.focus;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
