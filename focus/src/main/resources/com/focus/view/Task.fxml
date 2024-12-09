@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.focus.controllers.TaskController">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #E8E8E8; -fx-padding: 10; -fx-border-color: lightgray; -fx-border-width: 0 0 1 0;" >
+            <Button text="●" style="-fx-background-color: #C14A4A; -fx-min-width: 20;"/>
+            <Button text="⬇" style="-fx-background-color: #8AB4F8; -fx-min-width: 20;"/>
+            <Button text="☰" style="-fx-background-color: #B0BEC5; -fx-min-width: 20;"/>
+            <Button text="📊" style="-fx-background-color: #AED581; -fx-min-width: 20;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField promptText="Search" style="-fx-background-color: white;"/>
+            <Button text="⭢" style="-fx-min-width: 20;"/>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 10;">
+            <!-- Section 1: Important & Urgent -->
+            <VBox spacing="5" style="-fx-background-color: #DCC6E0; -fx-padding: 10; -fx-border-color: #7D3C98; -fx-border-radius: 5;">
+                <Label text="Important  Urgent 1" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <ScrollPane fitToWidth="true">
+                    <VBox spacing="5">
+                        <HBox spacing="5">
+                            <CheckBox/>
+                            <Label text="Write article on Word."/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="Dec 02" style="-fx-text-fill: gray;"/>
+                        </HBox>
+                    </VBox>
+                </ScrollPane>
+                <Button text="+" style="-fx-background-color: #8E44AD; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <!-- Section 2: Important & Not Urgent -->
+            <VBox spacing="5" style="-fx-background-color: #D6EAF8; -fx-padding: 10; -fx-border-color: #3498DB; -fx-border-radius: 5;" GridPane.columnIndex="1">
+                <Label text="Important / Not Urgent 0" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <ScrollPane fitToWidth="true">
+                    <VBox spacing="5"/>
+                </ScrollPane>
+                <Button text="+" style="-fx-background-color: #2874A6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <!-- Section 3: Not Important & Urgent -->
+            <VBox spacing="5" style="-fx-background-color: #D5F5E3; -fx-padding: 10; -fx-border-color: #1ABC9C; -fx-border-radius: 5;" GridPane.rowIndex="1">
+                <Label text="Not Important / Urgent 0" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <ScrollPane fitToWidth="true">
+                    <VBox spacing="5"/>
+                </ScrollPane>
+                <Button text="+" style="-fx-background-color: #16A085; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <!-- Section 4: Not Important & Not Urgent -->
+            <VBox spacing="5" style="-fx-background-color: #EAEDED; -fx-padding: 10; -fx-border-color: #7F8C8D; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="Not Important Not Urgent 0" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <ScrollPane fitToWidth="true">
+                    <VBox spacing="5"/>
+                </ScrollPane>
+                <Button text="+" style="-fx-background-color: #7F8C8D; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </VBox>
+        </GridPane>
+    </center>
+
+    <!-- Right Panel -->
+    <right>
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #FAFAFA; -fx-border-color: lightgray; -fx-border-width: 0 0 0 1;">
+            <Label text="Titre" style="-fx-font-size: 14px;"/>
+            <TextField promptText="Enter title here..."/>
+            <Label text="Notes" style="-fx-font-size: 14px;"/>
+            <TextArea promptText="Add notes here..." wrapText="true"/>
+            <Label text="Section" style="-fx-font-size: 14px;"/>
+            <ChoiceBox>
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Important / Urgent"/>
+                        <String fx:value="Important Not / Urgent"/>
+                        <String fx:value="Not Important / Urgent"/>
+                        <String fx:value="Not Important / Not Urgent"/>
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <HBox spacing="10">
+                <CheckBox text="Due Date"/>
+                <DatePicker/>
+                <TextField promptText="10:00 AM" style="-fx-max-width: 80;"/>
+            </HBox>
+            <Label text="Remind" style="-fx-font-size: 14px;"/>
+            <ChoiceBox>
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="At time of due date"/>
+                        <String fx:value="1 hour before"/>
+                        <String fx:value="1 day before"/>
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <Label text="Tags" style="-fx-font-size: 14px;"/>
+            <TextField promptText="Add tags separated by commas"/>
+        </VBox>
+    </right>
+</BorderPane>
