@@ -1,4 +1,4 @@
-module com {
+module com.focus {
     requires javafx.controls;
     requires javafx.fxml;
     requires transitive javafx.graphics;
