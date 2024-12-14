@@ -6,16 +6,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FocusManager extends Application {
+public class FocusApp extends Application {
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/focus/view/focus_manager.fxml"));
-        primaryStage.setTitle("FocusManager");
-        primaryStage.setScene(new Scene(root));
+        // Load the FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FocusApp.fxml"));
+        Scene scene = new Scene(loader.load());
+        primaryStage.setTitle("Focus App");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     public static void main(String[] args) {
+    
         launch(args);
     }
 }

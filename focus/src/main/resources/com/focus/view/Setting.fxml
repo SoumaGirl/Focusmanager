@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focus.controllers.SettingController">
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="20" style="-fx-background-color: #b3cbe4; -fx-padding: 20;">
+            <Button fx:id="timerButton" text="⏰" style="-fx-font-size: 20px; -fx-background-color: transparent;"/>
+            <Button fx:id="statsButton" text="📊" style="-fx-font-size: 20px; -fx-background-color: transparent;"/>
+            <Button fx:id="settingsButton" text="⚙" style="-fx-font-size: 20px; -fx-background-color: #d0d7e0;"/>
+        </VBox>
+    </left>
+
+    <!-- Center Section -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20; -fx-background-color: #ffffff;">
+            <Label text="Personnaliser le Minuteur" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+            <!-- Settings -->
+            <VBox spacing="15">
+                <!-- Start Break Automatically -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Commencer la Pause Automatiquement" style="-fx-font-size: 14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ToggleButton fx:id="autoBreakToggle"/>
+                </HBox>
+
+                <!-- Start Pomodoro Automatically -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Commencer la Pomodoro Automatiquement" style="-fx-font-size: 14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ToggleButton fx:id="autoPomodoroToggle"/>
+                </HBox>
+
+                <!-- Alarm Sound -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Son de l’Alarme" style="-fx-font-size: 14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="alarmSoundComboBox" prefWidth="120"/>
+                </HBox>
+
+                <!-- Total Intervals -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Total des intervalles" style="-fx-font-size: 14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="intervalsComboBox" prefWidth="120"/>
+                </HBox>
+
+                <!-- Focus Time -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Temps de Concentration" style="-fx-font-size: 14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="focusTimeComboBox" prefWidth="120"/>
+                </HBox>
+
+                <!-- Short Break -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Pause Courte" style="-fx-font-size: 14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="shortBreakComboBox" prefWidth="120"/>
+                </HBox>
+
+                <!-- Long Break -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Pause Longue" style="-fx-font-size: 14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="longBreakComboBox" prefWidth="120"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>
