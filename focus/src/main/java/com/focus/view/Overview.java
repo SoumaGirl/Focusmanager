@@ -13,6 +13,11 @@ public class Overview extends Application {
         primaryStage.setTitle("Overview");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+        Stage stage = primaryStage;
+        stage.setMinWidth(1024);  // Minimum width
+        stage.setMinHeight(768); // Minimum height
+
     }
 
     public static void main(String[] args) {

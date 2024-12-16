@@ -1,16 +1,33 @@
 package com.focus.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class SettingController {
 
+    @FXML
+    private Button homebutton;
+
+    @FXML
+    private Button rapportButton;
+
+    @FXML
+    private Button sesionButton;
+
+    @FXML
+    private Button settingsButton;
+
+
     // FXML Fields
-    @FXML private ToggleButton autoBreakToggle;
-    @FXML private ToggleButton autoPomodoroToggle;
+    
     @FXML private ComboBox<String> alarmSoundComboBox;
     @FXML private ComboBox<Integer> intervalsComboBox;
     @FXML private ComboBox<String> focusTimeComboBox;
@@ -21,7 +38,7 @@ public class SettingController {
     @FXML
     public void initialize() {
         // Initialize Alarm Sound Options
-        alarmSoundComboBox.getItems().addAll("Annonce", "Beep", "Chime", "Silent");
+        alarmSoundComboBox.getItems().addAll("Annonce", "Silence");
         alarmSoundComboBox.setValue("Annonce");
 
         // Initialize Intervals Options
@@ -40,17 +57,37 @@ public class SettingController {
         longBreakComboBox.getItems().addAll("10min", "15min", "20min", "25min");
         longBreakComboBox.setValue("15min");
 
-        // Add listeners to ToggleButtons
-        autoBreakToggle.setOnAction(event -> handleToggle(autoBreakToggle, "Pause automatique"));
-        autoPomodoroToggle.setOnAction(event -> handleToggle(autoPomodoroToggle, "Pomodoro automatique"));
+    }
+      @FXML
+    private void handleHomeButton() {
+        loadView("AppUsage.fxml");
     }
 
-    // Handle Toggle Actions
-    private void handleToggle(ToggleButton toggleButton, String feature) {
-        if (toggleButton.isSelected()) {
-            System.out.println(feature + " activé.");
-        } else {
-            System.out.println(feature + " désactivé.");
+    // Handles Rapport Button Click
+    @FXML
+    private void handleRapportButton() {
+        loadView("Overview.fxml");
+    }
+
+    // Handles Session Button Click
+    @FXML
+    private void handleSessionButton() {
+        loadView("FocusApp.fxml");
+    }
+
+    // Handles Settings Button Click
+    @FXML
+    private void handleSettingsButton() {
+        loadView("Setting.fxml");
+    }
+
+    // Generic method to load an FXML file
+    private void loadView(String fxmlFile) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/focus/view/" + fxmlFile));
+            ((Node) homebutton).getScene().setRoot(root); // Replace the current scene root
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

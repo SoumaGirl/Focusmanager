@@ -7,67 +7,58 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focus.controllers.SettingController">
     <!-- Left Sidebar -->
     <left>
-        <VBox spacing="20" style="-fx-background-color: #b3cbe4; -fx-padding: 20;">
-            <Button fx:id="timerButton" text="⏰" style="-fx-font-size: 20px; -fx-background-color: transparent;"/>
-            <Button fx:id="statsButton" text="📊" style="-fx-font-size: 20px; -fx-background-color: transparent;"/>
-            <Button fx:id="settingsButton" text="⚙" style="-fx-font-size: 20px; -fx-background-color: #d0d7e0;"/>
+        <VBox spacing="10" style="-fx-background-color: #b3cbe4; -fx-padding: 10;">
+            
+            <Button fx:id="homebutton" text="🏠 Home" style="-fx-font-size: 25px; -fx-background-color: transparent;" onAction="#handleHomeButton"/>
+            <Button fx:id="rapportButton" text="📊 Rapport" style="-fx-font-size: 25px; -fx-background-color: transparent;" onAction="#handleRapportButton"/>
+            <Button fx:id="sesionButton" text="⏰ Session" style="-fx-font-size: 25px; -fx-background-color: transparent;" onAction="#handleSessionButton"/>
+            <Button fx:id="settingsButton" text="⚙ Settings" style="-fx-font-size: 25px; -fx-background-color: transparent;" onAction="#handleSettingsButton"/>
         </VBox>
     </left>
 
     <!-- Center Section -->
     <center>
-        <VBox spacing="20" style="-fx-padding: 20; -fx-background-color: #ffffff;">
-            <Label text="Personnaliser le Minuteur" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <VBox spacing="30" style="-fx-padding: 40; -fx-background-color: #ffffff;">
+            <Label text="SETTINGS" style="-fx-font-size: 40px; -fx-font-weight: bold;"/>
 
             <!-- Settings -->
-            <VBox spacing="15">
+            <VBox spacing="40">
                 <!-- Start Break Automatically -->
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Commencer la Pause Automatiquement" style="-fx-font-size: 14px;"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <ToggleButton fx:id="autoBreakToggle"/>
-                </HBox>
-
-                <!-- Start Pomodoro Automatically -->
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Commencer la Pomodoro Automatiquement" style="-fx-font-size: 14px;"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <ToggleButton fx:id="autoPomodoroToggle"/>
-                </HBox>
+                
 
                 <!-- Alarm Sound -->
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Son de l’Alarme" style="-fx-font-size: 14px;"/>
+                    <Label text="Son de l’Alarme" style="-fx-font-size: 24px;"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <ComboBox fx:id="alarmSoundComboBox" prefWidth="120"/>
+                    <ComboBox fx:id="alarmSoundComboBox" prefWidth="150"/>
                 </HBox>
 
                 <!-- Total Intervals -->
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Total des intervalles" style="-fx-font-size: 14px;"/>
+                    <Label text="Total des intervalles" style="-fx-font-size: 24px;"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <ComboBox fx:id="intervalsComboBox" prefWidth="120"/>
+                    <ComboBox fx:id="intervalsComboBox" prefWidth="150"/>
                 </HBox>
 
                 <!-- Focus Time -->
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Temps de Concentration" style="-fx-font-size: 14px;"/>
+                    <Label text="Temps de Concentration" style="-fx-font-size: 24px;"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <ComboBox fx:id="focusTimeComboBox" prefWidth="120"/>
+                    <ComboBox fx:id="focusTimeComboBox" prefWidth="150"/>
                 </HBox>
 
                 <!-- Short Break -->
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Pause Courte" style="-fx-font-size: 14px;"/>
+                    <Label text="Pause Courte" style="-fx-font-size: 24px;"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <ComboBox fx:id="shortBreakComboBox" prefWidth="120"/>
+                    <ComboBox fx:id="shortBreakComboBox" prefWidth="150"/>
                 </HBox>
 
                 <!-- Long Break -->
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Pause Longue" style="-fx-font-size: 14px;"/>
+                    <Label text="Pause Longue" style="-fx-font-size: 24px;"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <ComboBox fx:id="longBreakComboBox" prefWidth="120"/>
+                    <ComboBox fx:id="longBreakComboBox" prefWidth="150"/>
                 </HBox>
             </VBox>
         </VBox>

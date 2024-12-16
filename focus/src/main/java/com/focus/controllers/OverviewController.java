@@ -1,17 +1,32 @@
 package com.focus.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class OverviewController {
 
     @FXML
-    private Button backButton;
+    private Button homebutton;
+
+    @FXML
+    private Button rapportButton;
+
+    @FXML
+    private Button sesionButton;
+
+    @FXML
+    private Button settingsButton;
 
     @FXML
     private Button dayButton;
@@ -26,12 +41,6 @@ public class OverviewController {
     private Button yearButton;
 
     @FXML
-    private Label dateLabel;
-
-    @FXML
-    private Label totalTimeLabel;
-
-    @FXML
     private BarChart<String, Number> timeDistributionChart;
 
     @FXML
@@ -42,86 +51,133 @@ public class OverviewController {
 
     @FXML
     private void initialize() {
-        // Initialize the chart with sample data
+        // Link chart buttons to data-loading methods
+        dayButton.setOnAction(event -> loadDayData());
+        weekButton.setOnAction(event -> loadWeeklyData());
+        monthButton.setOnAction(event -> loadMonthlyData());
+        yearButton.setOnAction(event -> loadYearlyData());
+
+        // Default chart view: Week
         loadWeeklyData();
     }
 
+    // Handles Home Button Click
     @FXML
-    private void onDayButtonClicked() {
-        dateLabel.setText("Today");
-        totalTimeLabel.setText("Total focused time: 5min");
-        loadDayData();
+    private void handleHomeButton() {
+        loadView("AppUsage.fxml");
     }
 
+    // Handles Rapport Button Click
     @FXML
-    private void onWeekButtonClicked() {
-        dateLabel.setText("Nov 19-25, 2024");
-        totalTimeLabel.setText("Total focused time: 30min");
-        loadWeeklyData();
+    private void handleRapportButton() {
+        loadView("Overview.fxml");
     }
 
+    // Handles Session Button Click
     @FXML
-    private void onMonthButtonClicked() {
-        dateLabel.setText("November 2024");
-        totalTimeLabel.setText("Total focused time: 2h");
-        loadMonthlyData();
+    private void handleSessionButton() {
+        loadView("FocusApp.fxml");
     }
 
+    // Handles Settings Button Click
     @FXML
-    private void onYearButtonClicked() {
-        dateLabel.setText("Year 2024");
-        totalTimeLabel.setText("Total focused time: 10h");
-        loadYearlyData();
+    private void handleSettingsButton() {
+        loadView("Setting.fxml");
     }
 
-    private void loadDayData() {
-        timeDistributionChart.getData().clear();
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Focused Time");
-        series.getData().add(new XYChart.Data<>("Morning", 5));
-        timeDistributionChart.getData().add(series);
-    }
-
-    private void loadWeeklyData() {
-        timeDistributionChart.getData().clear();
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Focused Time");
-        series.getData().add(new XYChart.Data<>("Sunday", 1));
-        series.getData().add(new XYChart.Data<>("Monday", 1));
-        series.getData().add(new XYChart.Data<>("Tuesday", 10));
-        series.getData().add(new XYChart.Data<>("Wednesday", 20));
-        series.getData().add(new XYChart.Data<>("Thursday", 1));
-        series.getData().add(new XYChart.Data<>("Friday", 1));
-        series.getData().add(new XYChart.Data<>("Saturday", 1));
-        timeDistributionChart.getData().add(series);
-    }
-
-    private void loadMonthlyData() {
-        timeDistributionChart.getData().clear();
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Focused Time");
-        for (int i = 1; i <= 30; i++) {
-            series.getData().add(new XYChart.Data<>("Day " + i, Math.random() * 10));
+    // Generic method to load an FXML file
+    private void loadView(String fxmlFile) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/focus/view/" + fxmlFile));
+            ((Node) homebutton).getScene().setRoot(root); // Replace the current scene root
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    // Load Day Data into BarChart
+    private void loadDayData() {
+        resetChart("Hour", "Time (minutes)", 0, 60); // 0-60 minutes range
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Daily Focused Time");
+
+        for (int i = 1; i <= 24; i++) { // 24 hours
+            series.getData().add(new XYChart.Data<>(i + "H", Math.random() * 60));
+        }
+
         timeDistributionChart.getData().add(series);
     }
 
-    private void loadYearlyData() {
-        timeDistributionChart.getData().clear();
+    // Load Weekly Data into BarChart
+    private void loadWeeklyData() {
+        resetChart("Days", "Time (hours)", 0, 24); // 0-24 hours range
+
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Focused Time");
-        series.getData().add(new XYChart.Data<>("Jan", 10));
-        series.getData().add(new XYChart.Data<>("Feb", 12));
-        series.getData().add(new XYChart.Data<>("Mar", 15));
-        series.getData().add(new XYChart.Data<>("Apr", 8));
-        series.getData().add(new XYChart.Data<>("May", 20));
-        series.getData().add(new XYChart.Data<>("Jun", 5));
-        series.getData().add(new XYChart.Data<>("Jul", 9));
-        series.getData().add(new XYChart.Data<>("Aug", 7));
-        series.getData().add(new XYChart.Data<>("Sep", 10));
-        series.getData().add(new XYChart.Data<>("Oct", 12));
-        series.getData().add(new XYChart.Data<>("Nov", 14));
-        series.getData().add(new XYChart.Data<>("Dec", 11));
+        series.setName("Weekly Focused Time");
+
+        series.getData().add(new XYChart.Data<>("Sunday", Math.random() * 24));
+        series.getData().add(new XYChart.Data<>("Monday", Math.random() * 24));
+        series.getData().add(new XYChart.Data<>("Tuesday", Math.random() * 24));
+        series.getData().add(new XYChart.Data<>("Wednesday", Math.random() * 24));
+        series.getData().add(new XYChart.Data<>("Thursday", Math.random() * 24));
+        series.getData().add(new XYChart.Data<>("Friday", Math.random() * 24));
+        series.getData().add(new XYChart.Data<>("Saturday", Math.random() * 24));
+
         timeDistributionChart.getData().add(series);
+    }
+
+    // Load Monthly Data into BarChart
+    private void loadMonthlyData() {
+        resetChart("Days", "Time (hours)", 0, 24); // 0-24 hours range
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Monthly Focused Time");
+
+        for (int i = 1; i <= 30; i++) {
+            series.getData().add(new XYChart.Data<>("Day " + i, Math.random() * 24));
+        }
+
+        timeDistributionChart.getData().add(series);
+    }
+
+    // Load Yearly Data into BarChart
+    private void loadYearlyData() {
+        resetChart("Months", "Time (hours)", 0, 744); // 0-744 hours range (31 days * 24 hours)
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Yearly Focused Time");
+
+        series.getData().add(new XYChart.Data<>("Jan", Math.random() * 744));
+        series.getData().add(new XYChart.Data<>("Feb", Math.random() * 672)); // 28 days
+        series.getData().add(new XYChart.Data<>("Mar", Math.random() * 744));
+        series.getData().add(new XYChart.Data<>("Apr", Math.random() * 720)); // 30 days
+        series.getData().add(new XYChart.Data<>("May", Math.random() * 744));
+        series.getData().add(new XYChart.Data<>("Jun", Math.random() * 720));
+        series.getData().add(new XYChart.Data<>("Jul", Math.random() * 744));
+        series.getData().add(new XYChart.Data<>("Aug", Math.random() * 744));
+        series.getData().add(new XYChart.Data<>("Sep", Math.random() * 720));
+        series.getData().add(new XYChart.Data<>("Oct", Math.random() * 744));
+        series.getData().add(new XYChart.Data<>("Nov", Math.random() * 720));
+        series.getData().add(new XYChart.Data<>("Dec", Math.random() * 744));
+
+        timeDistributionChart.getData().add(series);
+    }
+
+    /**
+     * Resets the chart and updates axis labels and bounds.
+     *
+     * @param xAxisLabel Label for the X-axis
+     * @param yAxisLabel Label for the Y-axis
+     * @param lowerBound Lower bound of the Y-axis
+     * @param upperBound Upper bound of the Y-axis
+     */
+    private void resetChart(String xAxisLabel, String yAxisLabel, int lowerBound, int upperBound) {
+        timeDistributionChart.getData().clear();
+        daysAxis.setLabel(xAxisLabel);
+        timeAxis.setLabel(yAxisLabel);
+        timeAxis.setAutoRanging(false);
+        timeAxis.setLowerBound(lowerBound);
+        timeAxis.setUpperBound(upperBound);
     }
 }
